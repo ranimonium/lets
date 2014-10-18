@@ -39,7 +39,11 @@ CREATE TABLE IF NOT EXISTS `exchange` (
 	`favor` INTEGER NOT NULL,
 	`status` ENUM("Pending","Approved","In Progress","Rejected"),
 	CONSTRAINT `exchangePK` PRIMARY KEY (`exchangeid`),
+<<<<<<< HEAD
 	CONSTRAINT `exFKuser1` FOREIGN KEY (`to`) REFERENCES `user` (`userid`),
+=======
+	CONSTRAINT `exFKuser` FOREIGN KEY (`to`) REFERENCES `user` (`userid`),
+>>>>>>> 91ad3329e1cb5e76ee2d5b458fd1efb0d818b78b
 	CONSTRAINT `exFKfavor` FOREIGN KEY (`favor`) REFERENCES `favor` (`favorid`)
 ) Engine=InnoDB;
 

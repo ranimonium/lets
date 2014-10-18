@@ -22,9 +22,6 @@ class Main extends CI_Controller {
 	public function login() {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-
-		$username = 'jdavalos';
-		$password = 'password';
 		
 		//check db for username & password combination
 		$result = $this->user->login($username, $password);
@@ -32,9 +29,11 @@ class Main extends CI_Controller {
 		if ($result != false) {
 
 			// $this->session->set_userdata('current_user', $result);
-			echo "good";
+			// echo '<pre>'..'</pre>';
+			echo 'Hello, ' . $username . "!";
 		} else {
-			echo "bad";
+			redirect('main', 'refresh');
+			echo "Invalid username or password";
 		}
 	}
 
