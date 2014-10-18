@@ -27,7 +27,12 @@ class Favors extends CI_Controller {
     public function my($filter = NULL)
     {
         $userid = 3;
+<<<<<<< HEAD
         $data['favors'] = $this->favor->get_favorsByUser($userid, $filter);
+=======
+        $data['favors'] = $this->favor->get_favorsByUser($userid);
+
+>>>>>>> d11defa21afff4a607e2987acd0666db453898fb
         $this->load->view('headfoot/header');
         $this->load->view('myfavors', $data);
         $this->load->view('headfoot/footer');
