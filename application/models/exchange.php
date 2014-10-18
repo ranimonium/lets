@@ -23,9 +23,10 @@ class Exchange extends CI_Model{
 		$query = $this->db->insert('exchange', $exchangedata);
 	}
 
-	//upon approval, rejects all other pending requests
-	public function set_request($exchangeid, $status){
+	
+	public function set_request($exchangeid, $userid, $status){
 		$this->db->where('exchangeid', $exchangeid);
+		$this->db->where('to', $userid);
 		$this->db->update('exchange', array(
 				'status' => $status  
 			));

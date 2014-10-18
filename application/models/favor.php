@@ -28,6 +28,13 @@ class Favor extends CI_Model{
 		return $query->result();
 	}
 
+	public function get_ownerid($favorid){
+		$this->db->select('owner');
+		$this->db->where('favorid', $favorid);
+
+		return $this->db->get();
+	}
+
 	//show all requests
 	//delete
 
