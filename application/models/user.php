@@ -14,15 +14,15 @@ class User extends CI_Model{
 	}	
 
 	//for login
-	public function check_user($userid, $password) {
-		$this->db->select('userid');
+	public function check_user($username, $password) {
 		$query = $this->db->get_where('user', 
 			array(
-				'userid' => $userid,
+				'username' => $username,
 				'password' => $password
 			)
 		);
 
+		// var_dump($query);
 		if (count($query->row()) == 0) {
 			return false;
 		} else {
