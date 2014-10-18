@@ -18,7 +18,7 @@ class Users extends CI_Controller {
     }
 
     public function edit()
-    {
+    {	
         $this->load->view('headfoot/header');
         $this->load->view('users_edit');
         $this->load->view('headfoot/footer');
