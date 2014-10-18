@@ -8,7 +8,7 @@ class Favor extends CI_Model{
 	}
 
 	public function create_favor($favordata){
-		$favordata['owner'] = 2;
+		$favordata['owner'] = $this->session->userdata('current_user')->userid;
 		$query = $this->db->insert('favor', $favordata);
 	}
 
@@ -84,7 +84,4 @@ class Favor extends CI_Model{
 
 		return $this->db->get();
 	}
-
-	//show all requests
-	//delete
 }

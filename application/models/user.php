@@ -38,7 +38,7 @@ class User extends CI_Model{
 		$this->db->select(array(
 			'user.userid as userid',
 			'user.username as name',
-			'user.about as about',
+			'user.about as about',)
 		);
 	}
 	
@@ -51,9 +51,49 @@ class User extends CI_Model{
 		);
 		$this->db->from('user');
 		$this->db->where('user.isOrg', $isOrg);
+
 		$query = $this->db->get();
 
 		return $query->result();
+	}
+
+	public function get_memberships($userid) {
+		$this->db->select(array(
+				'member.orgid as orgid',
+				'user.username as orgname',
+			)
+		);
+
+		$this->db->from('member');
+		$this->db->join('user', 'member.memberid = user.userid');
+
+		$this->db->where('member.memberid', $userid);
+
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+	public function get_memberships2($userid) {
+		$ids = array();
+
+		$this->db->select(array(
+				'member.orgid as orgid',
+			)
+		);
+
+		$this->db->from('member');
+		$this->db->join('user', 'member.memberid = user.userid');
+
+		$this->db->where('member.memberid', $userid);
+
+		$query = $this->db->get();
+
+		foreach ($query->result() as $m) {
+			array_push($ids, $m->orgid);
+		}
+
+		return $ids;
 	}
 
 	public function update_user($userid, $password) {
@@ -73,4 +113,11 @@ class User extends CI_Model{
 		return count($query->result()) > 0;
 	}
 
+	public function join_org($userid, $orgid) {
+		$this->db->insert('member', array(
+			'orgid' => $orgid,
+			'memberid' => $userid,
+			'isOwner' => 0,
+		));
+	}
 }
