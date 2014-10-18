@@ -4,7 +4,7 @@ class Favors extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('favor'));
+        $this->load->model(array('favor', 'exchange'));
     }
 
     public function index()
@@ -26,8 +26,12 @@ class Favors extends CI_Controller {
 
     public function my()
     {
+        $userid = 3;
+        $data['favors'] = $this->favor->get_favorsByUser($userid);
+
+        var_dump($data['favors'][0]);
         $this->load->view('headfoot/header');
-        $this->load->view('myfavors');
+        $this->load->view('myfavors', $data);
         $this->load->view('headfoot/footer');
     }    
 }
