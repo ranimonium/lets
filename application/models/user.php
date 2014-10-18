@@ -15,17 +15,22 @@ class User extends CI_Model{
 
 	//for login
 	public function login($username, $password) {
-		$array = array( 'username' => $username, 'password'=>$password);
+		$this->db->select(array(
+				'user.userid as userid',
+				'user.username as username',
+			)
+		);
 
-		$query = $this->db->get_where('user', $array);
-		
-		// var_dump($query);
-		// $this->db->where('password', MD5($password));
+		$this->db->from('user');
+		$this->db->where('user.username', $username);
+		$this->db->where('user.password', $password);
+
+		$query = $this->db->get();
 
 		if ($query->num_rows() == 0) {
 			return false;
 		} else {
-			return $query;
+			return $query->result()[0];
 		}
 	}
 

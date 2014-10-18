@@ -9,7 +9,24 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('login');
+		$data = array();
+		// if login attempt
+		if (isset($_POST['username'])) {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			
+			//check db for username & password combination
+			$result = $this->user->login($username, $password);
+		
+			if ($result != false) {
+				$this->session->set_userdata('current_user', $result);
+				redirect('main/home');
+			} else {
+				$data['message'] = 'Invalid login';
+			}
+		}
+
+		$this->load->view('login', $data);
 	}
 
 	public function home()
@@ -17,24 +34,6 @@ class Main extends CI_Controller {
 		$this->load->view('headfoot/header');
 		$this->load->view('home');
 		$this->load->view('headfoot/footer');
-	}
-
-	public function login() {
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		
-		//check db for username & password combination
-		$result = $this->user->login($username, $password);
-	
-		if ($result != false) {
-
-			// $this->session->set_userdata('current_user', $result);
-			// echo '<pre>'..'</pre>';
-			echo 'Hello, ' . $username . "!";
-		} else {
-			redirect('main', 'refresh');
-			echo "Invalid username or password";
-		}
 	}
 
 	public function logout() {
