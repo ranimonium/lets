@@ -29,7 +29,6 @@ class Favors extends CI_Controller {
         $userid = 3;
         $data['favors'] = $this->favor->get_favorsByUser($userid);
 
-        var_dump($data['favors'][0]);
         $this->load->view('headfoot/header');
         $this->load->view('myfavors', $data);
         $this->load->view('headfoot/footer');
