@@ -2,14 +2,23 @@
     <div class="segment">
         <div class="greeting">
             ORGANIZATIONS
+            <a class="side-link" href="#">[Create an Organization]</a>
         </div>
 
         <table>
             <thead>
-                <th>Name</th>
+                <tr>
+                    <th>Name</th>
+                    <th>About</th>
+                </tr>
             </thead>
             <tbody>
-                <th>Something</th>
+                <?php foreach ($organizations as $org) { ?>
+                <tr>
+                    <td><?php echo $org->name ?></td>
+                    <td><?php echo $org->about ?></td>
+                </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
@@ -21,10 +30,18 @@
 
         <table>
             <thead>
-                <th>Name</th>
+                <tr>
+                    <th>Name</th>
+                    <th>About</th>
+                </tr>
             </thead>
             <tbody>
-                <th>Something</th>
+                <?php foreach ($people as $peep) { ?>
+                <tr>
+                    <td><?php echo $peep->name ?></td>
+                    <td><?php echo $peep->about ?></td>
+                </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
