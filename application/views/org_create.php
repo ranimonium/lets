@@ -6,7 +6,7 @@
         <?php } ?>
 
         <form id = "form" method = "post" action = "<?php echo site_url('users/create_org') ?>">
-            <span class = "beside">Name</span><input type = "text" class = "input"  name="username" value="<?php if (isset($username)) { echo $username; }/><br>
+            <span class = "beside">Name</span><input type = "text" class = "input"  name="username" value="<?php if (isset($username)) { echo $username; } ?>"/><br>
             <span class = "beside">About</span><textarea name="about"/></textarea><br>
             <input type="submit" value = "Submit" id = "submit"/>
         </form>

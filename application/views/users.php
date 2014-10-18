@@ -10,6 +10,7 @@
                 <tr>
                     <th>Name</th>
                     <th>About</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><?php echo $org->name ?></td>
                     <td><?php echo $org->about ?></td>
+                    <td><button>JOIN</button></td>
                 </tr>
                 <?php } ?>
             </tbody>

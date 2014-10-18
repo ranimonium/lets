@@ -42,6 +42,8 @@ class Users extends CI_Controller {
                     'about' => $_POST['about'],
                     'isOrg' => true,
                 ));
+
+                redirect('users');
             }
         }
 
