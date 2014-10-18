@@ -14,7 +14,7 @@
             <input class = "c input" name = "password" type = "password" placeholder = "Password"/>
             <input value = "Submit" type = "submit" class = "c" id = "submit"/>
             </form>
-            <div class = "c" id = "register"><a href = "register.php">Register</a></div>
+            <div class = "c" id = "register"><a href = "<?php echo site_url('users/register') ?>">Register</a></div>
             <?php
                 $error_show = "display: none";
 
