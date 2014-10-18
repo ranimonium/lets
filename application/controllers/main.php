@@ -9,7 +9,7 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('login');
 	}
 
 	public function home()
@@ -27,7 +27,7 @@ class Main extends CI_Controller {
 		$password = 'password';
 		
 		//check db for username & password combination
-		$result = $this->user->check_user($username, $password);
+		$result = $this->user->login($username, $password);
 	
 		if ($result != false) {
 

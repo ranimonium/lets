@@ -1,4 +1,4 @@
-<?php
+	<?php
 class User extends CI_Model{
 
 	function __construct(){
@@ -14,16 +14,13 @@ class User extends CI_Model{
 	}	
 
 	//for login
-	public function check_user($username, $password) {
-		$query = $this->db->get_where('user', 
-			array(
-				'username' => $username,
-				'password' => $password
-			)
-		);
+	public function login($username, $password) {
+		$array = array( 'username' => $username, 'password'=>$password);
 
-		// var_dump($query);
-		if (count($query->row()) == 0) {
+		$query = $this->db->get_where('user', $array);
+		// $this->db->where('password', MD5($password));
+
+		if ($query->num_rows() == 0) {
 			return false;
 		} else {
 			return true;

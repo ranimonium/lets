@@ -1,6 +1,6 @@
 <div id="main-content">
 
-    <div id="greeting">
+    <div class="greeting">
         Hello, USER!!
     </div>
 

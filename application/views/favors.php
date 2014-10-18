@@ -1,5 +1,5 @@
 <div id="main-content">
-    <div id="greeting">
+    <div class="greeting">
         FAVORS
     </div>
 </div>
