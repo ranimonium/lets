@@ -22,22 +22,23 @@ CREATE TABLE IF NOT EXISTS `favor` (
 	`worth` INTEGER NOT NULL,
 	`qty` INTEGER,
 	`type` ENUM('Service', 'Event', 'Good') NOT NULL,
+	`status` ENUM('Ongoing','Finished'),
 	`description` TEXT,
 	CONSTRAINT `favorPK` PRIMARY KEY (`favorid`),
 	CONSTRAINT `favorFKuser` FOREIGN KEY (`owner`) REFERENCES `user` (`userid`)
 ) Engine=InnoDB;
 
-INSERT INTO `favor` (`name`, `owner`, `worth`, `qty`, `type`, `description`) VALUES 
-('ballpen', 2, 1, 5, 'Good', 'cool ballpen ko yo'),
-('training', 3, 5, 30, 'Service', 'we teach python yo'),
-('hackathon', 3, 3, 30, 'Event', 'get points here yo');
+INSERT INTO `favor` (`name`, `owner`, `worth`, `qty`, `type`, `status`, `description`) VALUES 
+('ballpen', 2, 1, 5, 'Good', 'Ongoing', 'cool ballpen ko yo'),
+('training', 3, 5, 30, 'Service', 'Ongoing', 'we teach python yo'),
+('hackathon', 3, 3, 30, 'Event', 'Ongoing', 'get points here yo');
 
 DROP TABLE IF EXISTS `exchange`;
 CREATE TABLE IF NOT EXISTS `exchange` (
 	`exchangeid` INTEGER AUTO_INCREMENT,
 	`to` INTEGER NOT NULL,
 	`favor` INTEGER NOT NULL,
-	`status` ENUM("Pending","Approved","In Progress","Rejected"),
+	`status` ENUM('Pending','Accepted','Rejected'),
 	CONSTRAINT `exchangePK` PRIMARY KEY (`exchangeid`),
 	CONSTRAINT `exFKuser` FOREIGN KEY (`to`) REFERENCES `user` (`userid`),
 	CONSTRAINT `exFKfavor` FOREIGN KEY (`favor`) REFERENCES `favor` (`favorid`)
