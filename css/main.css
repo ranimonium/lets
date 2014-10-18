@@ -56,10 +56,11 @@ footer {
     color: #676056;
 }
 
-    .segment {
-        background: #FFF4EE;
-        color: #59654F;
-    }
+.segment {
+    padding: 10px;
+    background: #F2E9E1; 
+    margin-bottom: 30px;
+}
 
     /*Home page*/
     .greeting {
@@ -151,3 +152,4 @@ footer {
     font-size: 12px;
     font-weight: normal;
     display: none;
+}
