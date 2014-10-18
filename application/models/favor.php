@@ -84,4 +84,32 @@ class Favor extends CI_Model{
 
 		return $this->db->get();
 	}
+
+	public function avail_favor($userid, $favorid) {
+		$query = $this->db->insert('exchange', array(
+			'to' => $userid,
+			'favor' => $favorid,
+			'status' => 'Pending',
+		));
+	}
+
+	public function get_avails($userid) {
+		$ids = array();
+
+		$this->db->select(array(
+				'exchange.favor as favorid',
+			)
+		);
+
+		$this->db->from('exchange');
+		$this->db->where('exchange.to', $userid);
+
+		$query = $this->db->get();
+
+		foreach ($query->result() as $m) {
+			array_push($ids, $m->favorid);
+		}
+
+		return $ids;
+	}
 }
