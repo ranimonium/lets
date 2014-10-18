@@ -9,23 +9,28 @@ class User extends CI_Model{
 
 
 	public function create_user($userdata) {
+		$userdata['password'] = 'password';
 		$query = $this->db->insert('user', $userdata);
-
 	}	
 
 	//for login
 	public function login($username, $password) {
-		$array = array( 'username' => $username, 'password'=>$password);
+		$this->db->select(array(
+				'user.userid as userid',
+				'user.username as username',
+			)
+		);
 
-		$query = $this->db->get_where('user', $array);
-		
-		// var_dump($query);
-		// $this->db->where('password', MD5($password));
+		$this->db->from('user');
+		$this->db->where('user.username', $username);
+		$this->db->where('user.password', $password);
+
+		$query = $this->db->get();
 
 		if ($query->num_rows() == 0) {
 			return false;
 		} else {
-			return $query;
+			return $query->result()[0];
 		}
 	}
 
@@ -56,6 +61,16 @@ class User extends CI_Model{
 		$this->db->update('user', $userdata);
 	}
 
+	public function exists($username) {
+		$this->db->select(array(
+				'user.userid as userid',
+			)
+		);
+		$this->db->from('user');
+		$this->db->where('user.username', $username);
+		$query = $this->db->get();
 
+		return count($query->result()) > 0;
+	}
 
 }
