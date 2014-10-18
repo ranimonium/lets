@@ -16,6 +16,14 @@ class Favors extends CI_Controller {
         $this->load->view('headfoot/footer');
     }
 
+    public function get($key) {
+        $data['favors'] = $this->favor->get_favors($key);
+
+        $this->load->view('headfoot/header');
+        $this->load->view('favors', $data);
+        $this->load->view('headfoot/footer');
+    }
+
     public function my()
     {
         $this->load->view('headfoot/header');

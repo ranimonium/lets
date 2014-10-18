@@ -44,6 +44,24 @@ footer {
     text-align: center;
 }
 
+table {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+th {
+    padding: 5px;
+    background: #051C2C;
+    color: white;
+}
+
+td {
+    padding: 3px;
+    background: white;
+}
+
 #main-container {
     width: 1200px;
     margin: auto;
@@ -62,10 +80,21 @@ footer {
     margin-bottom: 30px;
 }
 
+.side-link {
+    font-size: 18px;
+    font-weight: normal;
+}
+
     /*Home page*/
     .greeting {
         font-weight: bold;
         font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    /*Browse Favors*/
+    #favor-filters {
+        margin-bottom: 10px;
     }
 
 

@@ -12,10 +12,11 @@ class Favor extends CI_Model{
 		
 	}
 
-	public function get_favors() {
+	public function get_favors($key = NULL) {
 		$this->db->select(array(
 				'favor.favorid as favorid',
 				'favor.name as name',
+				'user.username as owner',
 				'favor.worth as worth',
 				'favor.qty as qty',
 				'favor.type as type',
@@ -23,12 +24,13 @@ class Favor extends CI_Model{
 			)
 		);
 		$this->db->from('favor');
+		$this->db->join('user', 'favor.owner = user.userid');
+
+		if ($key != NULL) {
+			$this->db->where('favor.type', $key);
+		}
 		$query = $this->db->get();
-		
+
 		return $query->result();
 	}
-
-	//show all requests
-	//delete
-
 }

@@ -9,8 +9,11 @@ class Users extends CI_Controller {
 
     public function index()
     {
+        $data['organizations'] = $this->user->get_all_users(true);
+        $data['people'] = $this->user->get_all_users();
+
         $this->load->view('headfoot/header');
-        $this->load->view('users');
+        $this->load->view('users', $data);
         $this->load->view('headfoot/footer');
     }
 
