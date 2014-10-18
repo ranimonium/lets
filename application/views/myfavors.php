@@ -32,7 +32,7 @@
                         <td><?php echo $f->qty ?></td>
                         <td><?php echo $f->requestor ?></td>
                         <td><?php echo $f->status ?></td>
-                        <td><button>APPROVE</button></td>
+                        <td><button>APPROVE</button> &nbsp; <button>REJECT</button></td>
                     </tr>
                 <?php } ?>
             </tbody>

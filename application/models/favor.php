@@ -50,7 +50,6 @@ class Favor extends CI_Model{
 
 		$this->db->join('favor', 'favor.favorid = exchange.favor');
 		$this->db->join('user', 'exchange.to = user.userid');
-		
 		$this->db->where('favor.owner', $userid);
 
 		$query = $this->db->get();
