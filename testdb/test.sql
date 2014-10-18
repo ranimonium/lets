@@ -36,12 +36,10 @@ DROP TABLE IF EXISTS `exchange`;
 CREATE TABLE IF NOT EXISTS `exchange` (
 	`exchangeid` INTEGER AUTO_INCREMENT,
 	`to` INTEGER NOT NULL,
-	`from` INTEGER NOT NULL,
 	`favor` INTEGER NOT NULL,
-	`status` ENUM('PENDING', 'APPROVED', 'IN PROGRESS', 'REJECTED'),
+	`status` ENUM("Pending","Approved","In Progress","Rejected"),
 	CONSTRAINT `exchangePK` PRIMARY KEY (`exchangeid`),
 	CONSTRAINT `exFKuser1` FOREIGN KEY (`to`) REFERENCES `user` (`userid`),
-	CONSTRAINT `exFKuser2` FOREIGN KEY (`from`) REFERENCES `user` (`userid`),	
 	CONSTRAINT `exFKfavor` FOREIGN KEY (`favor`) REFERENCES `favor` (`favorid`)
 ) Engine=InnoDB;
 

@@ -2,14 +2,23 @@
 session_start();
 $con = mysql_connect('localhost', 'root', '');
 mysql_select_db('lets', $con);
-if(isset($_GET['filter'])  && $_GET['filter']!= "all") {
+$idto = $_SESSION['userid'];
+if(isset($_GET['xchange'])) {
+	$favorid = $_POST['favorid'];
+	$status = "Pending";
+	$insert_statement = "insert into exchange (`to`, `favor`, `status`) values ($idto, $favorid, '$status')";
+	$print = $insert_statement;
+	mysql_query($insert_statement);
+	//header("location:filter.php");
+}
+
+if(isset($_GET['filter'])) {
 	$key = $_GET['filter'];
-	$data = mysql_query("select * from favor join user on favor.owner = user.userid where type = '$key'");
+	$data = mysql_query("select * from favor join user on favor.owner = user.userid where type = '$key' and favor.owner != '$idto'");
 }
-else if ((isset($_GET['filter']) && $_GET['filter']=="all") || !isset($_GET['filter'])) {
-	$data = mysql_query("select * from favor join user on favor.owner = user.userid");
+else {
+	$data = mysql_query("select * from favor join user on favor.owner = user.userid where favor.owner != '$idto'");
 }
-mysql_close($con);
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +29,7 @@ mysql_close($con);
 <style type="text/css">
 	.reg {
 		margin: 0;
-		padding: 0;
+		padding: 0
 	}
 	.c {
 		position: relative;
@@ -128,25 +137,33 @@ mysql_close($con);
 		font-size: 18px;
 		font-weight: normal;
 	}
+	.hidden {
+		display: none;
+	}
 </style>
 <body>
 	<div class = "reg" id = "logo"><a href = "index.php">Insert App Name Here</a></div>
-	<div>Filter Results: <a href = "filter.php?filter=all">All</a> <a href = "filter.php?filter=Good">Good</a> <a href = "filter.php?filter=Service">Service</a> <a href = "filter.php?filter=Event">Event</a></div>
+	<div>Filter Results: <a href = "filter.php">All</a> <a href = "filter.php?filter=Good">Good</a> <a href = "filter.php?filter=Service">Service</a> <a href = "filter.php?filter=Event">Event</a></div>
 	<div class = "c main long" >
 		<h4>Favors</h4>
 		<?php
 		while( $favor = mysql_fetch_array($data)){
 		?>
-			<div id = "<?php echo $favor['favorid']?>" class = "favor">
-			<div>Favor: <?php echo $favor['name']?></div>
-			<div>Posted by: <?php echo $favor['username']?></div>
-			<div>Qty. Available: <?php echo $favor['qty']?></div>
-			<div>Description: <?php echo $favor['description']?></div>
-			</div>
+			<form method = "post" action = "filter.php?xchange=go" id = "form">
+			<input name = "favorid" value ="<?php echo $favor['favorid']?>" class = "favor hidden"/>
+			Name: <?php echo $favor['name']?> <input  name = "name" value = "<?php echo $favor['name']?>" class = "favor hidden"/> <br/>
+			Posted by: <?php echo $favor['username']?> <input  name = "userid" value = "<?php echo $favor['userid']?>" class = "favor hidden"/> <br/>
+			Qty. Available: <?php echo $favor['qty']?> <input name = "qty" value = "<?php echo $favor['qty']?>" class = "favor hidden"/> <br/>
+			Description: <?php echo $favor['description']?> <input name = "description" value = "<?php echo $favor['description']?>" class = "favor hidden"/><br/>
+			<input type = "submit" value = "BUY" id = "submit"/>
+			</form>
 			<br/>
+			
 		<?php
 		}
 		?>
+		
+		<?php echo $print ?>
 	</div>
 </div>
 </body>
