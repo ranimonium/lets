@@ -18,12 +18,14 @@ class User extends CI_Model{
 		$array = array( 'username' => $username, 'password'=>$password);
 
 		$query = $this->db->get_where('user', $array);
+		
+		// var_dump($query);
 		// $this->db->where('password', MD5($password));
 
 		if ($query->num_rows() == 0) {
 			return false;
 		} else {
-			return true;
+			return $query;
 		}
 	}
 

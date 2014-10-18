@@ -7,7 +7,7 @@
     <body>
         <div class = "rtn c" id = "logo"><a href = "index.php">LETS UP</a></div>
         <div class="rtn c" id="login">
-            <form method = "post" class = "rtn c" id = "form" action = "index.php?login=go">
+            <form method = "post" class = "rtn c" id = "form" action = "login">
             Username
             <input class = "c input" name = "username" type = "text" placeholder = "Username"/>
             Password
