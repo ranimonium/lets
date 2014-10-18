@@ -29,6 +29,14 @@ class User extends CI_Model{
 		}
 	}
 
+	public function get_user() {
+		$this->db->select(array(
+			'user.userid as userid',
+			'user.username as name',
+			'user.about as about',
+		);
+	}
+	
 	public function get_all_users($isOrg = false){
 		$this->db->select(array(
 				'user.userid as userid',
@@ -43,7 +51,7 @@ class User extends CI_Model{
 		return $query->result();
 	}
 
-	public function update_user($userid, $userdata) {
+	public function update_user($userid, $password) {
 		$this->db->where('userid', $userid);
 		$this->db->update('user', $userdata);
 	}
