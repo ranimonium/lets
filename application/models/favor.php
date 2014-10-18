@@ -12,6 +12,21 @@ class Favor extends CI_Model{
 		
 	}
 
+	public function get_favors() {
+		$this->db->select(array(
+				'favor.favorid as favorid',
+				'favor.name as name',
+				'favor.worth as worth',
+				'favor.qty as qty',
+				'favor.type as type',
+				'favor.description as description'
+			)
+		);
+		$this->db->from('favor');
+		$query = $this->db->get();
+		
+		return $query->result();
+	}
 
 	//show all requests
 	//delete
