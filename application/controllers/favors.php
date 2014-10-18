@@ -66,6 +66,8 @@ class Favors extends CI_Controller {
                     'description' => $_POST['description'],
                 ));
             }
+
+            redirect('favors/my');
         }
 
         $this->load->view('headfoot/header');
