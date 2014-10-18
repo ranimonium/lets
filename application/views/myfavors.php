@@ -3,12 +3,14 @@
     <div class="segment">
         <div class="greeting">
             MY FAVORS
+            <a class="side-link" href="<?php echo site_url('favors/create') ?>">[Create a Favor]</a>
         </div>
         <div id="favor-filters" style="margin-left:2.5%">
 			<a href="<?php echo site_url('favors/my/') ?>">All</a>
-            <a href="<?php echo site_url('favors/my/get/event') ?>">Event</a>
-            <a href="<?php echo site_url('favors/my/get/service') ?>">Service</a>
-            <a href="<?php echo site_url('favors/my/get/good') ?>">Good</a>
+            <a href="<?php echo site_url('favors/my/pending') ?>">Pending</a>
+            <a href="<?php echo site_url('favors/my/inprogress') ?>">In Progress</a>
+            <a href="<?php echo site_url('favors/my/accepted') ?>">Accepted</a>
+            <a href="<?php echo site_url('favors/my/rejected') ?>">Rejected</a>
         </div>
 
         <table>

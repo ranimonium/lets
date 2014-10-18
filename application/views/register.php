@@ -2,8 +2,7 @@
     <div class="segment">
         <div class="greeting">Join the LETS Community!</div>
         <?php if (isset($message)) { ?>
-            <div class = "c red" style="display:block"><?php echo $message?></div>
-        <?php } else { ?>
+            <div class = "c red"><?php echo $message?></div>
         <?php } ?>
 
         <form id = "form" method = "post" action = "<?php echo site_url('users/register') ?>">
