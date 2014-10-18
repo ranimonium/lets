@@ -2,7 +2,7 @@
     <div class="segment">
         <div class="greeting">
             ORGANIZATIONS
-            <a class="side-link" href="#">[Create an Organization]</a>
+            <a class="side-link" href="<?php echo site_url('users/create_org') ?>">[Create an Organization]</a>
         </div>
 
         <table>

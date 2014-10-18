@@ -9,8 +9,8 @@ class User extends CI_Model{
 
 
 	public function create_user($userdata) {
+		$userdata['password'] = 'password';
 		$query = $this->db->insert('user', $userdata);
-
 	}	
 
 	//for login
@@ -48,6 +48,16 @@ class User extends CI_Model{
 		$this->db->update('user', $userdata);
 	}
 
+	public function exists($username) {
+		$this->db->select(array(
+				'user.userid as userid',
+			)
+		);
+		$this->db->from('user');
+		$this->db->where('user.username', $username);
+		$query = $this->db->get();
 
+		return count($query->result()) > 0;
+	}
 
 }

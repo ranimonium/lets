@@ -24,8 +24,32 @@ class Users extends CI_Controller {
         $this->load->view('headfoot/footer');
     } 	
 
-	public function create(){
-		
+	public function create_org(){
+        $data = array();
+        // Check if data is submitted
+        if (isset($_POST['username'])) {
+            // Validate data
+            if (trim($_POST['username']) == '') {
+                $data['message'] = "Fill in missing information";
+            } else if ($this->user->exists($_POST['username'])) {
+                $data['message'] = "Try a different username";
+            }
 
+            // If no errors
+            if (!isset($data['message'])) {
+                $this->user->create_user(array(
+                    'username' => $_POST['username'],
+                    'about' => $_POST['about'],
+                    'isOrg' => true,
+                ));
+            }
+        }
+
+		$this->load->view('headfoot/header');
+        $this->load->view('org_create', $data);
+        $this->load->view('headfoot/footer');
 	}
 }
+
+
+
