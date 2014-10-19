@@ -74,7 +74,6 @@
                         <td><?php echo $f->qty ?></td>
                         <td><?php echo $f->owner ?></td>
                         <td><?php echo $f->status ?></td>
-
                     </tr>
                 <?php } ?>
             </tbody>

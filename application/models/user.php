@@ -103,17 +103,19 @@ class User extends CI_Model{
 		));
 	}
 
-	public function get_memberships($userid) {
+	public function get_ownerships($userid) {
 		$this->db->select(array(
-				'member.orgid as orgid',
-				'user.username as orgname',
+				'user.userid as userid',
+				'user.username as name',
+				'user.about as about',
 			)
 		);
 
 		$this->db->from('member');
-		$this->db->join('user', 'member.memberid = user.userid');
+		$this->db->join('user', 'member.orgid = user.userid');
 
 		$this->db->where('member.memberid', $userid);
+		$this->db->where('member.isOwner', true);
 
 		$query = $this->db->get();
 

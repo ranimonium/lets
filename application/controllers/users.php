@@ -97,6 +97,30 @@ class Users extends CI_Controller {
         $this->user->join_org($this->session->userdata('current_user')->userid, $this->input->post('orgid'));
         redirect('users');
     }
+
+    public function manage() {
+        $stuffs = explode('|', $this->input->post('orgid'));
+
+        $current_user = array(
+            'userid' => $stuffs[0],
+            'username' => $stuffs[1],
+            'own_userid' => $this->session->userdata('current_user')->userid,
+            'own_username' => $this->session->userdata('current_user')->username,
+        );
+
+        $this->session->set_userdata('current_user', (object)$current_user);
+        redirect('main/home');
+    }
+
+    public function revert() {
+        $current_user = array(
+            'userid' =>  $this->session->userdata('current_user')->own_userid,
+            'username' =>  $this->session->userdata('current_user')->own_username,
+        );
+
+        $this->session->set_userdata('current_user', (object)$current_user);
+        redirect('main/home');
+    }
 }
 
 

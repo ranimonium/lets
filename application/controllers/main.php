@@ -32,6 +32,7 @@ class Main extends CI_Controller {
 	public function home()
 	{
 		$data['points'] = $this->user->get_points($this->session->userdata('current_user')->userid);
+		$data['organizations'] = $this->user->get_ownerships($this->session->userdata('current_user')->userid);
 
 		$this->load->view('headfoot/header');
 		$this->load->view('home', $data);
