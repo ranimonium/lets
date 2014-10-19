@@ -5,6 +5,6 @@
     </div>
 
     <div id="points">
-        You currently have 0 points
+        You currently have <?php echo $points ?> points
     </div>
 </div>

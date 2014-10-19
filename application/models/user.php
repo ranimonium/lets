@@ -42,6 +42,19 @@ class User extends CI_Model{
 		);
 	}
 	
+	public function get_points($userid) {
+		$this->db->select(array(
+			'user.points as points',
+		));
+
+		$this->db->from('user');
+		$this->db->where('user.userid', $userid);
+
+		$query = $this->db->get();
+
+		return $query->result()[0]->points;
+	}
+
 	public function get_all_users($isOrg = false){
 		$this->db->select(array(
 				'user.userid as userid',
