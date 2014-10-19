@@ -42,13 +42,16 @@ class Favor extends CI_Model{
 				'favor.worth as worth',
 				'favor.qty as qty',
 				'favor.type as type',
-				'exchange.status as status'
+				'exchange.status as status',
+				'exchange.exchangeid as eid'
 
 			)
 		);
 		$this->db->from('exchange');
+		$this->db->where('favor.owner', $userid);
 
 		$this->db->join('favor', 'favor.favorid = exchange.favor');
+
 		$this->db->join('user', 'favor.owner = user.userid');
 		
 		$this->db->where('exchange.to', $userid);
