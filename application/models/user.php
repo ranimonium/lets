@@ -33,15 +33,26 @@ class User extends CI_Model{
 			return $query->result()[0];
 		}
 	}
-
-	public function get_user() {
+	
+	public function get_user($userid) {
 		$this->db->select(array(
+			'user.username as username',
+			'user.about as about',
+		));
+		
+		$this->db->from('user');
+		$this->db->where('user.userid', $userid);
+		
+		$query = $this->db->get();
+		
+		return $query->result()[0];
 			'user.userid as userid',
 			'user.username as name',
 			'user.about as about',)
 		);
 	}
 	
+<<<<<<< HEAD
 	public function get_points($userid) {
 		$this->db->select(array(
 			'user.points as points',
@@ -55,6 +66,9 @@ class User extends CI_Model{
 		return $query->result()[0]->points;
 	}
 
+=======
+	
+>>>>>>> fec1f82510602c08e80542890a5d41d73340313a
 	public function get_all_users($isOrg = false){
 		$this->db->select(array(
 				'user.userid as userid',
@@ -70,6 +84,11 @@ class User extends CI_Model{
 		return $query->result();
 	}
 
+	public function update($id,$data,$location) {
+		$this->db->where('userid', $id);
+		$this->db->update('user', array(
+			$location => $data,
+		));
 	public function get_memberships($userid) {
 		$this->db->select(array(
 				'member.orgid as orgid',
