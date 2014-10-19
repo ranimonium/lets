@@ -19,9 +19,8 @@
                     <th>Type</th>
                     <th>Worth</th>
                     <th>Quantity</th>
-                    <th>User Requesting</th>
+                    <th>Favor Owner</th>
                     <th>Status</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +32,6 @@
                         <td><?php echo $f->qty ?></td>
                         <td><?php echo $f->owner ?></td>
                         <td><?php echo $f->status ?></td>
-                        <td><button>APPROVE</button></td>
                     </tr>
                 <?php } ?>
             </tbody>
