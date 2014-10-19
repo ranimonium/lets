@@ -28,7 +28,6 @@ class Favors extends CI_Controller {
 
     public function my($filter = NULL)
     {
-
         $data['favors'] = $this->favor->get_favorsByUser($this->session->userdata('current_user')->userid, $filter);
         $data['requests'] = $this->favor->get_favorsFromUser($this->session->userdata('current_user')->userid, $filter);
 
@@ -79,8 +78,7 @@ class Favors extends CI_Controller {
     }
 
     public function avail_favor()
-    {
-        // echo $this->input->post('favorid');            
+    {         
         $this->favor->avail_favor(intval($this->session->userdata('current_user')->userid), $this->input->post('favorid'));
         redirect('favors');
     }

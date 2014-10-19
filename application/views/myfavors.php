@@ -13,32 +13,40 @@
             <a href="<?php echo site_url('favors/my/rejected') ?>">Rejected</a>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Worth</th>
-                    <th>Quantity</th>
-                    <th>Requested by</th>
-                    <th>Status</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($requests as $f) { ?>
+        <form method="post" class="rtn c" action="<?php echo site_url('exchanges/change_exchangeStatus') ?>">
+            <table>
+                <thead>
                     <tr>
-                        <td><?php echo $f->name ?></td>
-                        <td><?php echo $f->type ?></td>
-                        <td><?php echo $f->worth ?></td>
-                        <td><?php echo $f->qty ?></td>
-                        <td><?php echo $f->requestor ?></td>
-                        <td><?php echo $f->status ?></td>
-                        <td><button>APPROVE</button><button>REJECT</button></td>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Worth</th>
+                        <th>Quantity</th>
+                        <th>Requested by</th>
+                        <th>Status</th>
+                        <th></th>
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($requests as $f) { ?>
+                        <tr>
+                            <td><?php echo $f->name ?></td>
+                            <td><?php echo $f->type ?></td>
+                            <td><?php echo $f->worth ?></td>
+                            <td><?php echo $f->qty ?></td>
+                            <td><?php echo $f->requestor ?></td>
+                            <td><?php echo $f->status ?></td>
+                            <?php if ($f->status == 'Pending') { ?>
+                                <td><button type="submit" name="eid" value="<?php echo $f->eid; ?>" >APPROVE</button> &nbsp;
+                                    <button type="submit" name="eid" value="<?php echo -$f->eid; ?>">REJECT</button>
+                                </td>
+                            <?php } else { ?>
+                                <td>No actions available</td>
+                            <?php } ?>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </form>
     </div>
 
     <div class="segment">
@@ -52,10 +60,7 @@
             <a href="<?php echo site_url('favors/my/accepted') ?>">Accepted</a>
             <a href="<?php echo site_url('favors/my/rejected') ?>">Rejected</a>
         </div>
-
-
-        FAVORS YOU OWN
-        <form method="post" class="rtn c" action="<?php echo site_url('exchanges/change_exchangeStatus') ?>">
+        
         <table>
             <thead>
                 <tr>
@@ -76,18 +81,11 @@
                         <td><?php echo $f->qty ?></td>
                         <td><?php echo $f->owner ?></td>
                         <td><?php echo $f->status ?></td>
-                        <td><button type="submit" name="eid" value="<?php echo $f->eid ?>">APPROVE</button> &nbsp;
-                            <button type="submit" name="eid" value="<?php echo -$f->eid ?>">REJECT</button></td>
 
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-        </form>
-
-
-        FAVORS YOU SIGNED UP FOR
+        
     </div>
-
-
 </div>

@@ -34,7 +34,6 @@ class Exchange extends CI_Model{
 		$this->db->update('exchange', array(
 				'status' => $status,  
 			));
-
 	}
 
 }
