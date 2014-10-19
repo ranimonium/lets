@@ -1,4 +1,4 @@
-	<?php
+<?php
 class User extends CI_Model{
 
 	function __construct(){
@@ -46,13 +46,12 @@ class User extends CI_Model{
 		$query = $this->db->get();
 		
 		return $query->result()[0];
-			'user.userid as userid',
-			'user.username as name',
-			'user.about as about',)
-		);
+		// 	'user.userid as userid',
+		// 	'user.username as name',
+		// 	'user.about as about',)
+		// );
 	}
 	
-<<<<<<< HEAD
 	public function get_points($userid) {
 		$this->db->select(array(
 			'user.points as points',
@@ -66,9 +65,6 @@ class User extends CI_Model{
 		return $query->result()[0]->points;
 	}
 
-=======
-	
->>>>>>> fec1f82510602c08e80542890a5d41d73340313a
 	public function get_all_users($isOrg = false){
 		$this->db->select(array(
 				'user.userid as userid',
@@ -89,6 +85,8 @@ class User extends CI_Model{
 		$this->db->update('user', array(
 			$location => $data,
 		));
+	}
+
 	public function get_memberships($userid) {
 		$this->db->select(array(
 				'member.orgid as orgid',

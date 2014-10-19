@@ -15,8 +15,6 @@
                 <a href="<?php echo site_url('favors/my') ?>">My Favors</a> |
                 <a href="<?php echo site_url('favors') ?>">Browse Favors</a> |
                 <a href="<?php echo site_url('users/update') ?>">Account</a> |
-                <a href="#">Logout</a>
-                <a href="<?php echo site_url('users/edit') ?>">Account</a> |
                 <a href="<?php echo site_url('main/logout') ?>">Logout</a>
             </nav>
         </header>
