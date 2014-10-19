@@ -78,6 +78,49 @@ class Favor extends CI_Model{
 		return $query->result();		
 	}
 
+	public function get_favorsFromUser($userid, $filter = NULL){
+		$this->db->select(array(
+				'favor.favorid as favorid',
+				'favor.name as name',
+				'user.username as requestor',
+				'favor.worth as worth',
+				'favor.qty as qty',
+				'favor.type as type',
+				'exchange.status as status'
+			)
+		);
+		$this->db->from('exchange');
+
+		$this->db->join('favor', 'favor.favorid = exchange.favor');
+		$this->db->join('user', 'exchange.to = user.userid');
+		
+		$this->db->where('favor.owner', $userid);
+
+		if ($filter != NULL) {
+			$status = '';
+			switch ($filter) {
+				case 'pending':
+					$status = 'Pending';
+					break;
+				case 'inprogress':
+					$status = 'In Progress';
+					break;
+				case 'accepted':
+					$status = 'Accepted';
+					break;
+				case 'rejected':
+					$status = 'Rejected';
+					break;
+			}
+
+			if ($status != '') {
+				$this->db->where('exchange.status', $status);
+			}
+		}
+		$query = $this->db->get();
+		return $query->result();		
+	}
+
 	public function get_ownerid($favorid){
 		$this->db->select('owner');
 		$this->db->where('favorid', $favorid);
