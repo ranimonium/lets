@@ -33,14 +33,21 @@ class User extends CI_Model{
 			return $query->result()[0];
 		}
 	}
-
-	public function get_user() {
+	
+	public function get_user($userid) {
 		$this->db->select(array(
-			'user.userid as userid',
-			'user.username as name',
+			'user.username as username',
 			'user.about as about',
-		);
+		));
+		
+		$this->db->from('user');
+		$this->db->where('user.userid', $userid);
+		
+		$query = $this->db->get();
+		
+		return $query->result()[0];
 	}
+	
 	
 	public function get_all_users($isOrg = false){
 		$this->db->select(array(
@@ -56,9 +63,11 @@ class User extends CI_Model{
 		return $query->result();
 	}
 
-	public function update_user($userid, $password) {
-		$this->db->where('userid', $userid);
-		$this->db->update('user', $userdata);
+	public function update($id,$data,$location) {
+		$this->db->where('userid', $id);
+		$this->db->update('user', array(
+			$location => $data,
+		));
 	}
 
 	public function exists($username) {

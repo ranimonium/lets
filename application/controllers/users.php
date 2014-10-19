@@ -10,17 +10,26 @@ class Users extends CI_Controller {
     public function index()
     {
         $data['organizations'] = $this->user->get_all_users(true);
-        $data['people'] = $this->user->get_all_users();
 
         $this->load->view('headfoot/header');
         $this->load->view('users', $data);
         $this->load->view('headfoot/footer');
     }
 
-    public function edit()
-    {	
+    public function update() {
+		$user_id = $this->session->userdata('current_user')->userid;
+		if (isset($_POST['password']) && trim($_POST['password']) != '') {
+			$blah = $this->input->post('password');
+			$this->user->update($user_id,$blah,'password');
+		}
+		if (isset($_POST['about'])) {
+			$blah = $this->input->post('about');
+			$this->user->update($user_id,$blah,'about');
+		}
+		
+		$data['details'] = $this->user->get_user($user_id);
         $this->load->view('headfoot/header');
-        $this->load->view('users_edit');
+        $this->load->view('users_edit', $data);
         $this->load->view('headfoot/footer');
     } 	
 
