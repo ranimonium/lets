@@ -10,7 +10,8 @@ class Users extends CI_Controller {
     public function index()
     {
         $data['organizations'] = $this->user->get_all_users(true);
-
+        $data['people'] = $this->user->get_all_users();
+        $data['memberships'] = $this->user->get_memberships2($this->session->userdata('current_user')->userid);
         $this->load->view('headfoot/header');
         $this->load->view('users', $data);
         $this->load->view('headfoot/footer');
@@ -51,6 +52,8 @@ class Users extends CI_Controller {
                     'about' => $_POST['about'],
                     'isOrg' => true,
                 ));
+
+                redirect('users');
             }
         }
 
@@ -88,6 +91,11 @@ class Users extends CI_Controller {
         $this->load->view('headfoot/header');
         $this->load->view('register', $data);
         $this->load->view('headfoot/footer');
+    }
+
+    public function join_org() {
+        $this->user->join_org($this->session->userdata('current_user')->userid, $this->input->post('orgid'));
+        redirect('users');
     }
 }
 
