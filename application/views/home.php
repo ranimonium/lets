@@ -1,7 +1,7 @@
 <div id="main-content">
 
     <div class="greeting">
-        Hello, USER!!
+        Hello, <?php echo $this->session->userdata('current_user')->username ?>!!
     </div>
 
     <div id="points">

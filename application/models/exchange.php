@@ -28,12 +28,13 @@ class Exchange extends CI_Model{
 
 	}
 
-	public function set_request($exchangeid, $userid, $status){
+	public function set_request($exchangeid, $status){
+
 		$this->db->where('exchangeid', $exchangeid);
-		$this->db->where('to', $userid);
 		$this->db->update('exchange', array(
-				'status' => $status  
+				'status' => $status,  
 			));
+
 	}
 
 }

@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS `favor`;
 CREATE TABLE IF NOT EXISTS `favor` (
 	`favorid` INTEGER AUTO_INCREMENT,
 	`owner` INTEGER NOT NULL,
-	`name` VARCHAR(20) UNIQUE,
+	`name` VARCHAR(20) UNIQUE NOT NULL,
 	`worth` INTEGER NOT NULL,
 	`qty` INTEGER,
 	`type` ENUM('Service', 'Event', 'Good') NOT NULL,

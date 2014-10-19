@@ -3,14 +3,19 @@
     <div class="segment">
         <div class="greeting">
             MY FAVORS
+            <a class="side-link" href="<?php echo site_url('favors/create') ?>">[Create a Favor]</a>
         </div>
         <div id="favor-filters" style="margin-left:2.5%">
 			<a href="<?php echo site_url('favors/my/') ?>">All</a>
-            <a href="<?php echo site_url('favors/my/get/event') ?>">Event</a>
-            <a href="<?php echo site_url('favors/my/get/service') ?>">Service</a>
-            <a href="<?php echo site_url('favors/my/get/good') ?>">Good</a>
+            <a href="<?php echo site_url('favors/my/pending') ?>">Pending</a>
+            <a href="<?php echo site_url('favors/my/inprogress') ?>">In Progress</a>
+            <a href="<?php echo site_url('favors/my/accepted') ?>">Accepted</a>
+            <a href="<?php echo site_url('favors/my/rejected') ?>">Rejected</a>
         </div>
 
+
+        FAVORS YOU OWN
+        <form method="post" class="rtn c" action="<?php echo site_url('exchanges/change_exchangeStatus') ?>">
         <table>
             <thead>
                 <tr>
@@ -32,10 +37,15 @@
                         <td><?php echo $f->qty ?></td>
                         <td><?php echo $f->requestor ?></td>
                         <td><?php echo $f->status ?></td>
-                        <td><button>APPROVE</button> &nbsp; <button>REJECT</button></td>
+                        <td><button type="submit" name="eid" value="<?php echo $f->eid ?>">APPROVE</button> &nbsp;
+                            <button type="submit" name="eid" value="<?php echo -$f->eid ?>">REJECT</button></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
+        </form>
+
+
+        FAVORS YOU SIGNED UP FOR
     </div>
 </div>
