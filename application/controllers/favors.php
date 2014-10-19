@@ -9,6 +9,7 @@ class Favors extends CI_Controller {
 
     public function index()
     {
+        $data['avails'] = $this->favor->get_avails($this->session->userdata('current_user')->userid);
         $data['favors'] = $this->favor->get_favors();
 
         $this->load->view('headfoot/header');
@@ -18,6 +19,7 @@ class Favors extends CI_Controller {
 
     public function get($key) {
         $data['favors'] = $this->favor->get_favors($key);
+        $data['avails'] = $this->favor->get_avails($this->session->userdata('current_user')->userid);
 
         $this->load->view('headfoot/header');
         $this->load->view('favors', $data);
@@ -27,8 +29,7 @@ class Favors extends CI_Controller {
     public function my($filter = NULL)
     {
 
-        $userid = 2;
-        $data['favors'] = $this->favor->get_favorsByUser($userid, $filter);
+        $data['favors'] = $this->favor->get_favorsByUser($this->session->userdata('current_user')->userid, $filter);
 
         $this->load->view('headfoot/header');
         $this->load->view('myfavors', $data);
@@ -74,5 +75,12 @@ class Favors extends CI_Controller {
         $this->load->view('headfoot/header');
         $this->load->view('favors_create', $data);
         $this->load->view('headfoot/footer');
+    }
+
+    public function avail_favor()
+    {
+        // echo $this->input->post('favorid');            
+        $this->favor->avail_favor(intval($this->session->userdata('current_user')->userid), $this->input->post('favorid'));
+        redirect('favors');
     }
 }
