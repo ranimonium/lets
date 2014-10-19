@@ -1,9 +1,8 @@
 <div id="main-content">
-
+    <a class="side-link" href="<?php echo site_url('favors/create') ?>">[Create a Favor]</a>
     <div class="segment">
         <div class="greeting">
-            MY FAVORS
-            <a class="side-link" href="<?php echo site_url('favors/create') ?>">[Create a Favor]</a>
+            Favors that I availed
         </div>
         <div id="favor-filters" style="margin-left:2.5%">
 			<a href="<?php echo site_url('favors/my/') ?>">All</a>
@@ -32,7 +31,7 @@
                         <td><?php echo $f->type ?></td>
                         <td><?php echo $f->worth ?></td>
                         <td><?php echo $f->qty ?></td>
-                        <td><?php echo $f->requestor ?></td>
+                        <td><?php echo $f->owner ?></td>
                         <td><?php echo $f->status ?></td>
                         <td><button>APPROVE</button></td>
                     </tr>

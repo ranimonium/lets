@@ -38,7 +38,7 @@ class Favor extends CI_Model{
 		$this->db->select(array(
 				'favor.favorid as favorid',
 				'favor.name as name',
-				'user.username as requestor',
+				'user.username as owner',
 				'favor.worth as worth',
 				'favor.qty as qty',
 				'favor.type as type',
@@ -49,9 +49,9 @@ class Favor extends CI_Model{
 		$this->db->from('exchange');
 
 		$this->db->join('favor', 'favor.favorid = exchange.favor');
-		$this->db->join('user', 'exchange.to = user.userid');
+		$this->db->join('user', 'favor.owner = user.userid');
 		
-		$this->db->where('favor.owner', $userid);
+		$this->db->where('exchange.to', $userid);
 
 		if ($filter != NULL) {
 			$status = '';
