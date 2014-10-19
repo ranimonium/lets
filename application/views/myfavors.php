@@ -1,16 +1,16 @@
 <div id="main-content">
+    <a class="side-link" href="<?php echo site_url('favors/create') ?>">[Create a Favor]</a>
+    <div id="favor-filters" style="margin-top:15px">
+        <a href="<?php echo site_url('favors/my/') ?>">All</a>
+        <a href="<?php echo site_url('favors/my/pending') ?>">Pending</a>
+        <a href="<?php echo site_url('favors/my/inprogress') ?>">In Progress</a>
+        <a href="<?php echo site_url('favors/my/accepted') ?>">Accepted</a>
+        <a href="<?php echo site_url('favors/my/rejected') ?>">Rejected</a>
+    </div>
     
     <div class="segment">
         <div class="greeting">
             Favors requested from me
-            <a class="side-link" href="<?php echo site_url('favors/create') ?>">[Create a Favor]</a>
-        </div>
-        <div id="favor-filters" style="margin-left:2.5%">
-            <a href="<?php echo site_url('favors/my/') ?>">All</a>
-            <a href="<?php echo site_url('favors/my/pending') ?>">Pending</a>
-            <a href="<?php echo site_url('favors/my/inprogress') ?>">In Progress</a>
-            <a href="<?php echo site_url('favors/my/accepted') ?>">Accepted</a>
-            <a href="<?php echo site_url('favors/my/rejected') ?>">Rejected</a>
         </div>
 
         <form method="post" class="rtn c" action="<?php echo site_url('exchanges/change_exchangeStatus') ?>">
@@ -52,13 +52,6 @@
     <div class="segment">
         <div class="greeting">
             Favors that I availed
-        </div>
-        <div id="favor-filters" style="margin-left:2.5%">
-			<a href="<?php echo site_url('favors/my/') ?>">All</a>
-            <a href="<?php echo site_url('favors/my/pending') ?>">Pending</a>
-            <a href="<?php echo site_url('favors/my/inprogress') ?>">In Progress</a>
-            <a href="<?php echo site_url('favors/my/accepted') ?>">Accepted</a>
-            <a href="<?php echo site_url('favors/my/rejected') ?>">Rejected</a>
         </div>
         
         <table>

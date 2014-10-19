@@ -11,6 +11,22 @@ class User extends CI_Model{
 	public function create_user($userdata) {
 		$userdata['password'] = 'password';
 		$query = $this->db->insert('user', $userdata);
+
+		$this->db->select(array(
+				'user.userid as userid',
+			)
+		);
+		$this->db->from('user');
+		$this->db->where('user.username', $userdata['username']);
+		$query = $this->db->get();
+
+		if ($userdata['isOrg']) {
+			$this->db->insert('member', array(
+				'orgid' => $query->result()[0]->userid,
+				'memberid' => $this->session->userdata('current_user')->userid,
+				'isOwner' => true,
+			));
+		}
 	}	
 
 	//for login
