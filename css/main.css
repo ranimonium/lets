@@ -74,10 +74,10 @@ td {
     margin-bottom: 30px;
 }
 
-.side-link {
+/*.side-link {
     font-size: 18px;
     font-weight: normal;
-}
+}*/
 
     /*Home page*/
     .greeting {
@@ -154,17 +154,21 @@ td {
     margin: 10px auto;
     text-align: center;
 }
-#submit {
+#submit, button, input[type="submit"], a.side-link:link, a.side-link:visited {
     display: block;
     border: none;
     background: #336699;
-    width: 75px;
+    width: auto;
     height: 30px;
-    padding: 0px;
+    padding: 5px;
     color: white;
     font-weight: bold;
     font-size: 18px;
     cursor: pointer;
+	text-decoration: none;
+}
+tbody button,  a.side-link:link, a.side-link:visited {
+	display: inline;
 }
 body {
     background: #99CCFF;
@@ -200,4 +204,8 @@ textarea {
     overflow: hidden;
     margin: 10px 10px 10px 0;
     font-family: "Helvetica";
+}
+a:link, a:visited {
+	text-decoration: none;
+	color: blue;
 }

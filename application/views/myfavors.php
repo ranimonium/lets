@@ -1,5 +1,5 @@
 <div id="main-content">
-    <a class="side-link" href="<?php echo site_url('favors/create') ?>">[Create a Favor]</a>
+    <a class="side-link" href="<?php echo site_url('favors/create') ?>">Create a Favor</a>
     <div id="favor-filters" style="margin-top:15px">
         <a href="<?php echo site_url('favors/my/') ?>">All</a>
         <a href="<?php echo site_url('favors/my/pending') ?>">Pending</a>

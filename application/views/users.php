@@ -2,7 +2,7 @@
     <div class="segment">
         <div class="greeting">
             ORGANIZATIONS
-            <a class="side-link" href="<?php echo site_url('users/create_org') ?>">[Create an Organization]</a>
+            <a class="side-link" href="<?php echo site_url('users/create_org') ?>">Create an Organization</a>
         </div>
 
         <form method = "post" class = "rtn c" id = "form" action = "<?php echo site_url('users/join_org') ?>">

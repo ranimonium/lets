@@ -29,11 +29,13 @@ class User extends CI_Model{
 		}
 	}	
 
+	
 	//for login
 	public function login($username, $password) {
 		$this->db->select(array(
 				'user.userid as userid',
 				'user.username as username',
+				'user.points as points',
 			)
 		);
 
@@ -85,6 +87,7 @@ class User extends CI_Model{
 		$this->db->select(array(
 				'user.userid as userid',
 				'user.username as name',
+				'user.points as points',
 				'user.about as about',
 			)
 		);
@@ -102,12 +105,26 @@ class User extends CI_Model{
 			$location => $data,
 		));
 	}
+	
+	public function delete_org($org,$user) {
+		$this->db->delete('member', array(
+				'orgid' => $org['org_id'],
+			));
+		$this->db->delete('user', array(
+				'userid' => $org['org_id'],
+			));
+		$this->db->where('userid', $user['user_id']);
+		$this->db->update('user', array(
+			'points' => $user['user_points'] + $org['org_points']
+		));
+	}
 
 	public function get_ownerships($userid) {
 		$this->db->select(array(
 				'user.userid as userid',
 				'user.username as name',
 				'user.about as about',
+				'user.points as points',
 			)
 		);
 

@@ -11,6 +11,11 @@ class User extends CI_Model{
 	public function edit_user($userdata) {
 		$this->db->where('userid', $userid);
 		$this->db->update('user', $userdata);
+	}
+	
+	public function delete_user($userdata) {
+		$this->db->where('userid', $userid);
+		$this->db->update('user', $userdata);
 	}	
 
 	public function get_user(){

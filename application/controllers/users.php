@@ -12,7 +12,7 @@ class Users extends CI_Controller {
         $data['organizations'] = $this->user->get_all_users(true);
         $data['people'] = $this->user->get_all_users();
         $data['memberships'] = $this->user->get_memberships2($this->session->userdata('current_user')->userid);
-        $this->load->view('headfoot/header');
+		$this->load->view('headfoot/header');
         $this->load->view('users', $data);
         $this->load->view('headfoot/footer');
     }
@@ -99,6 +99,7 @@ class Users extends CI_Controller {
     }
 
     public function manage() {
+		if (isset($_POST['orgid'])) {
         $stuffs = explode('|', $this->input->post('orgid'));
 
         $current_user = array(
@@ -110,6 +111,20 @@ class Users extends CI_Controller {
 
         $this->session->set_userdata('current_user', (object)$current_user);
         redirect('main/home');
+		}
+		else {
+			$stuffs = explode('|',$this->input->post('delete'));
+			$org = array (
+				'org_id' => $stuffs[0],
+				'org_points' => $stuffs[2],
+			);
+			$users = array (
+				'user_points' => $this->session->userdata('current_user')->points,
+				'user_id' => $this->session->userdata('current_user')->userid,
+			);
+			$this->user->delete_org($org,$users);
+			redirect('main/home');
+		}
     }
 
     public function revert() {
