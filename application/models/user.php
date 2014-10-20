@@ -105,10 +105,16 @@ class User extends CI_Model{
 			$location => $data,
 		));
 	}
-	
+	//doesn't work pa kasi i need to join, will fix
 	public function delete_org($org,$user) {
 		$this->db->delete('member', array(
 				'orgid' => $org['org_id'],
+			));
+		$this->db->delete('exchange', array(
+				'to' => $org['org_id'],
+			));
+		$this->db->delete('favor', array(
+				'owner' => $org['org_id'],
 			));
 		$this->db->delete('user', array(
 				'userid' => $org['org_id'],

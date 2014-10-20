@@ -11,6 +11,7 @@
     <div class="segment">
         <div class="greeting">
             Favors requested from me
+		<?php if (count($requests)>0) {?>	
         </div>
 
         <form method="post" class="rtn c" action="<?php echo site_url('exchanges/change_exchangeStatus') ?>">
@@ -47,12 +48,18 @@
                 </tbody>
             </table>
         </form>
+		<?php } else {?>
+			<br/><span class = "sub-greeting">You don't have any requests.</span>
+		</div>
+		<?php }?>
     </div>
 
     <div class="segment">
         <div class="greeting">
             Favors that I availed
+		<?php if (count($favors)>0) {?>	
         </div>
+
         
         <table>
             <thead>
@@ -78,6 +85,9 @@
                 <?php } ?>
             </tbody>
         </table>
-        
+        <?php } else {?>
+			<br/><span class = "sub-greeting">You haven't availed any favors.</span>
+		</div>
+		<?php }?>
     </div>
 </div>

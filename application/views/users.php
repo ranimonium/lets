@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Points</th>
                         <th>About</th>
                         <th></th>
                     </tr>
@@ -18,6 +19,7 @@
                     <?php foreach ($organizations as $org) { ?>
                     <tr>
                         <td><?php echo $org->name ?></td>
+                        <td><?php echo $org->points ?></td>
                         <td><?php echo $org->about ?></td>
 
                         <?php if (!in_array($org->userid, $memberships)) { ?>
@@ -41,6 +43,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Points</th>
                     <th>About</th>
                 </tr>
             </thead>
@@ -48,6 +51,7 @@
                 <?php foreach ($people as $peep) { ?>
                 <tr>
                     <td><?php echo $peep->name ?></td>
+                    <td><?php echo $peep->points ?></td>
                     <td><?php echo $peep->about ?></td>
                 </tr>
                 <?php } ?>

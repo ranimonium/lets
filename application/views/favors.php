@@ -3,6 +3,7 @@
     <div class="segment">
         <div class="greeting">
             FAVORS
+		<?php if(count($favors)>0) {?>
         </div>
         <div id="favor-filters" style="margin-left:2.5%">
             <a href="<?php echo site_url('favors') ?>">All</a>
@@ -10,7 +11,6 @@
             <a href="<?php echo site_url('favors/get/service') ?>">Service</a>
             <a href="<?php echo site_url('favors/get/good') ?>">Good</a>
         </div>
-
         <form method = "post" class = "rtn c" id = "form" action = "<?php echo site_url('favors/avail_favor') ?>">
             <table>
                 <thead>
@@ -25,7 +25,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($favors as $f) { ?>
+                    <?php foreach ($favors as $f) {
+						if ($f->qty > 0) {?>
                         <tr>
                             <td><?php echo $f->name ?></td>
                             <td><?php echo $f->owner ?></td>
@@ -40,9 +41,14 @@
                                 <td><i>Requested</i></td>
                             <?php } ?>
                         </tr>
-                    <?php } ?>
+                    <?php }
+					} ?>
                 </tbody>
             </table>
         </form>
+		<?php } else {?>
+			<br/>There are no favors available at the moment. 
+			</div>
+		<?php }?>
     </div>
 </div>
